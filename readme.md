@@ -40,20 +40,20 @@ To find the percentage of collaborative films, the following formula is used: Y=
 
 The a and b in the formula Y=ax+b are calculated through trial and error.
 
-[ 1 IMAGE ]
+![1](https://github.com/user-attachments/assets/df00252d-6d97-4567-9a50-60026faee150)
 
 ## Screenshots of the site
 #### Main screen
 
 When running the application, the screen randomly shows all the movies that are in the csv file. On the screen, we can see the title of the movie, the year of its release, the genres for this movie, and a rate button where the user can rate this movie (0.5–5 stars).
 
-[ 2 IMAGE ]
+![2](https://github.com/user-attachments/assets/a8b989d7-35b0-4632-b76c-a8d11cf4192c)
 
 #### Rate a Movie
 
 By clicking on the rate button, you will be redirected to this screen.
 
-[ 3 IMAGE ]
+![3](https://github.com/user-attachments/assets/7b808dcb-a10b-4f76-9289-a9f85ae48ba0)
 
 On this page, the information about each movie is displayed again, along with the average rating based on the ratings of all users. Moreover, we can see the total number of users who have rated it.
 
@@ -65,8 +65,8 @@ Returning to the home page and selecting the 'Show recommendations' button, our 
 
 Access to this page is not allowed if the user has not rated at least three movies.
 
-[ 4 IMAGE ]
+![4](https://github.com/user-attachments/assets/6cba6a8d-3c78-4c2a-8146-b76c4d11eb10)
 
 Movies are sorted by their score (the score is the rate our model predicts the user will give). The type column shows the approach based on which the movie is recommended to the user.
 
-[ 5 IMAGE ]
+![5](https://github.com/user-attachments/assets/814572e6-a0b7-45ee-9527-6595f0ccb6ed)
