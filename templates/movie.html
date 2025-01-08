@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            background-color: #191919;
+        }
+
+        h3 {
+            color: gold;
+        }
+
+        th {
+            color: gold;
+        }
+
+        td {
+            color: white;
+        }
+
+        .rate {
+            display: inline-block;
+            border: 0;
+        }
+
+        /* Hide radio */
+        .rate > input {
+            display: none;
+        }
+
+        /* Order correctly by floating highest to the right */
+        .rate > label {
+            float: right;
+        }
+
+        /* The star of the show */
+        .rate > label:before {
+            display: inline-block;
+            font-size: 2rem;
+            padding: .3rem .2rem;
+            margin: 0;
+            cursor: pointer;
+            font-family: FontAwesome;
+            content: "\f005 "; /* full star */
+        }
+
+        /* Half star trick */
+        .rate .half:before {
+            content: "\f089 "; /* half star no outline */
+            position: absolute;
+            padding-right: 0;
+        }
+
+        /* Click + hover color */
+        input:checked ~ label, /* color current and previous stars on checked */
+        label:hover, label:hover ~ label {
+            color: gold;
+        }
+
+        /* color previous stars on hover */
+
+        /* Hover highlights */
+        input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
+        input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+        label:hover ~ input:checked ~ label /* highlight previous selected stars */
+        {
+            color: gold;
+        }
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    <title>Showing a movie</title>
+</head>
+<body>
+
+<br>
+<br>
+
+<div class="row">
+    <div class="col-4 d-flex justify-content-center align-items-center">
+        <button class="btn btn-outline-warning" onclick="location.href = '/';">Show all movies</button>
+    </div>
+    <div class="col-4 d-flex justify-content-center align-items-center">
+        <span class="text-center" style="font-size: 30px; color: gold;">Movie Recommendation System</span><br>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <th class="text-center">ID</th>
+                <td class="text-center">{{ movieTitle }}</td>
+            </tr>
+
+            <tr>
+                <th class="text-center">Genres</th>
+                <td class="text-center">{{ movieGenres }}</td>
+            </tr>
+
+            <tr>
+                <th class="text-center">Average rating</th>
+                <td class="text-center">{{ movieAverageRating }}</td>
+            </tr>
+
+            <tr>
+                <th class="text-center">Total ratings</th>
+                <td class="text-center">{{ movieTotalRatings }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br>
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 d-flex justify-content-center align-items-center">
+        <h3>Rate the movie</h3>
+    </div>
+</div>
+
+<form method="POST" action="/addRatingInUser">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 d-flex justify-content-center align-items-center">
+            <input type="hidden" name="movieId" value="{{ movieId }}">
+            <fieldset class="rate">
+                <input type="radio" id="rating10" name="rating" value="10" {% if movieUserRating== 10
+                       %}checked="checked" {% endif %} required/>
+                <label for="rating10" title="5 stars"></label>
+
+                <input type="radio" id="rating9" name="rating" value="9" {% if movieUserRating== 9 %}checked="checked"
+                       {% endif %}/>
+                <label class="half" for="rating9" title="4.5 stars"></label>
+
+                <input type="radio" id="rating8" name="rating" value="8" {% if movieUserRating== 8 %}checked="checked"
+                       {% endif %}/>
+                <label for="rating8" title="4 stars"></label>
+
+                <input type="radio" id="rating7" name="rating" value="7" {% if movieUserRating== 7 %}checked="checked"
+                       {% endif %}/>
+                <label class="half" for="rating7" title="3.5 stars"></label>
+
+                <input type="radio" id="rating6" name="rating" value="6" {% if movieUserRating== 6 %}checked="checked"
+                       {% endif %}/>
+                <label for="rating6" title="3 stars"></label>
+
+                <input type="radio" id="rating5" name="rating" value="5" {% if movieUserRating== 5 %}checked="checked"
+                       {% endif %}/>
+                <label class="half" for="rating5" title="2.5 stars"></label>
+
+                <input type="radio" id="rating4" name="rating" value="4" {% if movieUserRating== 4 %}checked="checked"
+                       {% endif %}/>
+                <label for="rating4" title="2 stars"></label>
+
+                <input type="radio" id="rating3" name="rating" value="3" {% if movieUserRating== 3 %}checked="checked"
+                       {% endif %}/>
+                <label class="half" for="rating3" title="1.5 stars"></label>
+
+                <input type="radio" id="rating2" name="rating" value="2" {% if movieUserRating== 2 %}checked="checked"
+                       {% endif %}/>
+                <label for="rating2" title="1 star"></label>
+
+                <input type="radio" id="rating1" name="rating" value="1" {% if movieUserRating== 1 %}checked="checked"
+                       {% endif %}/>
+                <label class="half" for="rating1" title="0.5 stars"></label>
+            </fieldset>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <button type="submit" class="btn btn-outline-warning">Save that rate!</button>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
